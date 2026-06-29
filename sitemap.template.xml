@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Replace https://example.com with the final production domain, then rename this file to sitemap.xml. -->
+  <!-- Production sitemap uses https://higherground.tools. Keep this template only if another deployment target is needed later. -->
   <url>
-    <loc>https://example.com/index.html</loc>
+    <loc>https://higherground.tools/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://example.com/about.html</loc>
+    <loc>https://higherground.tools/about.html</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://example.com/whitepaper.html</loc>
+    <loc>https://higherground.tools/whitepaper.html</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://example.com/donate.html</loc>
+    <loc>https://higherground.tools/donate.html</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://example.com/contact.html</loc>
+    <loc>https://higherground.tools/contact.html</loc>
     <priority>0.7</priority>
   </url>
 </urlset>

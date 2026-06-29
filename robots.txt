@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://andrewfis.github.io/HigherGround/sitemap.xml
+Sitemap: https://higherground.tools/sitemap.xml
