@@ -43,7 +43,20 @@
 
       <section class="privacy-note">
         <strong>Local first.</strong>
-        This prototype reads the current page and your saved memory in this browser only.
+        AI personalization only runs if you enable remote processing in Portable memory.
+      </section>
+
+      <section class="temp-context" aria-label="Temporary context">
+        <div class="temp-heading">
+          <label for="tempContext">Temporary context</label>
+          <span id="tempState">None saved</span>
+        </div>
+        <textarea id="tempContext" rows="6" placeholder="Capture a visible page, review the temporary profile, then save it for this browser session."></textarea>
+        <div class="temp-actions">
+          <button type="button" class="secondary" id="captureTemp">Capture page</button>
+          <button type="button" class="secondary" id="saveTemp">Save temp</button>
+          <button type="button" class="secondary" id="clearTemp">Clear</button>
+        </div>
       </section>
 
       <div class="actions">

@@ -36,11 +36,20 @@ function getCandidateText() {
     .slice(0, 12000);
 }
 
+function getPagePayload() {
+  return {
+    title: document.title || "",
+    url: window.location.href,
+    text: getCandidateText()
+  };
+}
+
 function applyConsent(memory) {
   const consent = {
     pageText: memory.consent?.pageText ?? true,
     localMemory: memory.consent?.localMemory ?? true,
-    remoteProcessing: false
+    remoteProcessing: memory.consent?.remoteProcessing ?? false,
+    profileInApi: memory.consent?.profileInApi ?? false
   };
 
   if (consent.localMemory) {
@@ -50,8 +59,11 @@ function applyConsent(memory) {
   return {
     purpose: memory.purpose || "understand",
     depth: memory.depth || "plain",
+    lens: memory.lens || "clarity",
     role: "",
     notes: "",
+    profileText: "",
+    tempContext: null,
     consent
   };
 }
@@ -121,7 +133,40 @@ function adaptText(memory) {
     highlights: topSentences,
     terms,
     nextSteps,
-    wordCount: text ? text.split(/\s+/).length : 0
+    wordCount: text ? text.split(/\s+/).length : 0,
+    source: "Local"
+  };
+}
+
+async function adaptWithOpenAI(memory) {
+  const consentedMemory = applyConsent(memory);
+  const backendUrl = memory.backendUrl || "http://localhost:8787/adapt";
+  const page = {
+    ...getPagePayload(),
+    text: consentedMemory.consent.pageText ? getCandidateText() : ""
+  };
+
+  const response = await fetch(backendUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      page,
+      memory: consentedMemory
+    })
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || "AI adaptation failed.");
+  }
+
+  return {
+    ...data.adaptation,
+    wordCount: page.text ? page.text.split(/\s+/).length : 0,
+    source: data.model ? `OpenAI ${data.model}` : "OpenAI"
   };
 }
 
@@ -197,7 +242,7 @@ function ensureOverlay() {
         <ul data-cg-next></ul>
       </section>
       <div class="cg-consent">
-        No page text leaves this browser in this prototype. Memory is stored with Chrome local storage.
+        Local mode is active. Page text only leaves this browser when AI personalization is enabled in Portable memory.
       </div>
     </div>
     <footer class="cg-footer">
@@ -224,12 +269,11 @@ function ensureOverlay() {
   return overlay;
 }
 
-function renderOverlay(memory) {
+function renderAdaptation(adapted) {
   const overlay = ensureOverlay();
-  const adapted = adaptText(memory);
 
   overlay.querySelector("[data-cg-opener]").textContent =
-    `${adapted.opener} Approximate page length: ${adapted.wordCount.toLocaleString()} words.`;
+    `${adapted.opener} Source: ${adapted.source}. Approximate page length: ${adapted.wordCount.toLocaleString()} words.`;
 
   const highlights = overlay.querySelector("[data-cg-highlights]");
   highlights.replaceChildren(
@@ -262,6 +306,44 @@ function renderOverlay(memory) {
   overlay.hidden = false;
 }
 
+function renderLoading() {
+  const overlay = ensureOverlay();
+  overlay.querySelector("[data-cg-opener]").textContent = "Creating a personalized AI reading lens...";
+  overlay.querySelector("[data-cg-highlights]").replaceChildren();
+  overlay.querySelector("[data-cg-terms]").replaceChildren();
+  overlay.querySelector("[data-cg-next]").replaceChildren();
+  overlay.hidden = false;
+}
+
+function renderError(error, fallback) {
+  const adapted = {
+    ...fallback,
+    opener: `${error.message || "AI adaptation failed."} Showing the local reading lens instead. ${fallback.opener}`
+  };
+  renderAdaptation(adapted);
+}
+
+async function renderOverlay(memory) {
+  const consentedMemory = applyConsent(memory);
+  const localAdaptation = adaptText(consentedMemory);
+
+  if (!consentedMemory.consent.remoteProcessing) {
+    renderAdaptation(localAdaptation);
+    return "Adapted locally";
+  }
+
+  renderLoading();
+
+  try {
+    const aiAdaptation = await adaptWithOpenAI(consentedMemory);
+    renderAdaptation(aiAdaptation);
+    return "Adapted with AI";
+  } catch (error) {
+    renderError(error, localAdaptation);
+    return "AI failed, local shown";
+  }
+}
+
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   if (request.type === "CG_TOGGLE_OVERLAY") {
     const overlay = ensureOverlay();
@@ -271,8 +353,14 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   }
 
   if (request.type === "CG_ADAPT_PAGE") {
-    renderOverlay(request.memory || {});
-    sendResponse({ message: "Adapted" });
+    renderOverlay(request.memory || {}).then((message) => {
+      sendResponse({ message });
+    });
+    return true;
+  }
+
+  if (request.type === "CG_GET_PAGE_PAYLOAD") {
+    sendResponse({ page: getPagePayload() });
     return true;
   }
 

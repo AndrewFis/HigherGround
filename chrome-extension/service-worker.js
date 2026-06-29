@@ -8,12 +8,16 @@ chrome.runtime.onInstalled.addListener(() => {
         purpose: "understand",
         depth: "plain",
         comfort: "balanced",
+        lens: "clarity",
         notes: "",
+        profileText: "",
         consent: {
           pageText: true,
           localMemory: true,
-          remoteProcessing: false
-        }
+          remoteProcessing: false,
+          profileInApi: false
+        },
+        backendUrl: "http://localhost:8787/adapt"
       }
     });
   });

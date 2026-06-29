@@ -3,22 +3,30 @@ const DEFAULT_MEMORY = {
   purpose: "understand",
   depth: "plain",
   comfort: "balanced",
+  lens: "clarity",
   notes: "",
+  profileText: "",
   consent: {
     pageText: true,
     localMemory: true,
-    remoteProcessing: false
-  }
+    remoteProcessing: false,
+    profileInApi: false
+  },
+  backendUrl: "http://localhost:8787/adapt"
 };
 
 const fields = {
   role: document.getElementById("role"),
   purpose: document.getElementById("purpose"),
   comfort: document.getElementById("comfort"),
+  lens: document.getElementById("lens"),
   notes: document.getElementById("notes"),
+  profileText: document.getElementById("profileText"),
   pageText: document.getElementById("pageText"),
   localMemory: document.getElementById("localMemory"),
-  remoteProcessing: document.getElementById("remoteProcessing")
+  remoteProcessing: document.getElementById("remoteProcessing"),
+  profileInApi: document.getElementById("profileInApi"),
+  backendUrl: document.getElementById("backendUrl")
 };
 
 const output = document.getElementById("exportOutput");
@@ -29,12 +37,16 @@ function readForm() {
     role: fields.role.value.trim(),
     purpose: fields.purpose.value,
     comfort: fields.comfort.value,
+    lens: fields.lens.value,
     notes: fields.notes.value.trim(),
+    profileText: fields.profileText.value.trim(),
     consent: {
       pageText: fields.pageText.checked,
       localMemory: fields.localMemory.checked,
-      remoteProcessing: false
-    }
+      remoteProcessing: fields.remoteProcessing.checked,
+      profileInApi: fields.profileInApi.checked
+    },
+    backendUrl: fields.backendUrl.value.trim() || DEFAULT_MEMORY.backendUrl
   };
 }
 
@@ -42,10 +54,14 @@ function writeForm(memory) {
   fields.role.value = memory.role || "";
   fields.purpose.value = memory.purpose || DEFAULT_MEMORY.purpose;
   fields.comfort.value = memory.comfort || DEFAULT_MEMORY.comfort;
+  fields.lens.value = memory.lens || DEFAULT_MEMORY.lens;
   fields.notes.value = memory.notes || "";
+  fields.profileText.value = memory.profileText || "";
   fields.pageText.checked = memory.consent?.pageText ?? true;
   fields.localMemory.checked = memory.consent?.localMemory ?? true;
-  fields.remoteProcessing.checked = false;
+  fields.remoteProcessing.checked = memory.consent?.remoteProcessing ?? false;
+  fields.profileInApi.checked = memory.consent?.profileInApi ?? false;
+  fields.backendUrl.value = memory.backendUrl || DEFAULT_MEMORY.backendUrl;
 }
 
 async function loadMemory() {
