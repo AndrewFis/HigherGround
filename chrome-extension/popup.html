@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CommonGround</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header class="popup-header">
+        <div>
+          <p class="eyebrow">CommonGround</p>
+          <h1>Adaptive Reader</h1>
+        </div>
+        <span class="mark" aria-hidden="true"></span>
+      </header>
+
+      <section class="control-group" aria-label="Reader purpose">
+        <label for="purpose">Purpose</label>
+        <select id="purpose">
+          <option value="understand">Understand the page</option>
+          <option value="decide">Make a decision</option>
+          <option value="apply">Apply it step by step</option>
+          <option value="teach">Explain it to someone</option>
+          <option value="scan">Scan for what matters</option>
+        </select>
+      </section>
+
+      <section class="control-group" aria-label="Reading depth">
+        <label>Reading lens</label>
+        <div class="segments" role="group" aria-label="Reading lens">
+          <button type="button" class="segment active" data-depth="plain">Plain</button>
+          <button type="button" class="segment" data-depth="balanced">Balanced</button>
+          <button type="button" class="segment" data-depth="deep">Deep</button>
+        </div>
+      </section>
+
+      <section class="control-group" aria-label="Reader role">
+        <label for="role">Current role or context</label>
+        <input id="role" type="text" placeholder="Parent, student, case worker...">
+      </section>
+
+      <section class="privacy-note">
+        <strong>Local first.</strong>
+        This prototype reads the current page and your saved memory in this browser only.
+      </section>
+
+      <div class="actions">
+        <button type="button" class="primary" id="adaptPage">Adapt page</button>
+        <button type="button" class="secondary" id="toggleOverlay">Show overlay</button>
+      </div>
+
+      <footer>
+        <button type="button" class="text-button" id="openOptions">Portable memory</button>
+        <span id="status" role="status" aria-live="polite"></span>
+      </footer>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -157,7 +157,7 @@ img {
 .home-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
-  grid-template-rows: repeat(3, minmax(152px, 1fr));
+  grid-template-rows: repeat(4, minmax(128px, 1fr));
   min-height: calc(100vh - 230px);
   border: 1px solid rgba(149, 141, 132, 0.18);
   background: rgba(149, 141, 132, 0.045);
@@ -171,7 +171,7 @@ img {
 }
 
 .home-visual {
-  grid-row: 1 / 4;
+  grid-row: 1 / 5;
   min-height: 560px;
   padding: clamp(30px, 5vw, 58px);
 }
@@ -278,8 +278,8 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 152px;
-  padding: 28px;
+  min-height: 128px;
+  padding: 24px 28px;
   border-left: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   transition:
@@ -309,8 +309,8 @@ img {
 
 .home-link h2 {
   max-width: 330px;
-  margin-bottom: 12px;
-  font-size: clamp(1.16rem, 1.8vw, 1.46rem);
+  margin-bottom: 10px;
+  font-size: clamp(1.06rem, 1.55vw, 1.32rem);
   line-height: 1.05;
 }
 

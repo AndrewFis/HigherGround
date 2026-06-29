@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CommonGround Portable Memory</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="options-shell">
+      <section class="page-title">
+        <p class="eyebrow">CommonGround</p>
+        <h1>Portable memory</h1>
+        <p>Your adaptive reading context stays in Chrome local storage for this prototype.</p>
+      </section>
+
+      <form id="memoryForm" class="memory-form">
+        <label>
+          Current role or context
+          <input id="role" type="text" placeholder="Student, caregiver, business owner...">
+        </label>
+
+        <label>
+          Default purpose
+          <select id="purpose">
+            <option value="understand">Understand the page</option>
+            <option value="decide">Make a decision</option>
+            <option value="apply">Apply it step by step</option>
+            <option value="teach">Explain it to someone</option>
+            <option value="scan">Scan for what matters</option>
+          </select>
+        </label>
+
+        <label>
+          Reading comfort
+          <select id="comfort">
+            <option value="plain">Prefer plain language</option>
+            <option value="balanced">Balanced detail</option>
+            <option value="technical">Comfortable with technical detail</option>
+          </select>
+        </label>
+
+        <label>
+          Memory notes
+          <textarea id="notes" rows="7" placeholder="Goals, vocabulary comfort, accessibility needs, domains you know well, or context you choose to keep portable."></textarea>
+        </label>
+
+        <fieldset>
+          <legend>Consent boundaries</legend>
+          <label class="check">
+            <input id="pageText" type="checkbox">
+            Use readable text from the active page
+          </label>
+          <label class="check">
+            <input id="localMemory" type="checkbox">
+            Use my saved local memory for adaptation
+          </label>
+          <label class="check disabled">
+            <input id="remoteProcessing" type="checkbox" disabled>
+            Remote AI processing is off in this prototype
+          </label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" class="primary">Save memory</button>
+          <button type="button" class="secondary" id="exportMemory">Export JSON</button>
+          <button type="button" class="danger" id="clearMemory">Clear</button>
+        </div>
+      </form>
+
+      <pre id="exportOutput" aria-live="polite"></pre>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "CommonGround Adaptive Reader",
+  "version": "0.1.0",
+  "description": "A local HigherGround reading overlay for purpose-led adaptation and reader-owned portable memory.",
+  "action": {
+    "default_title": "CommonGround",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["content.css"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
