@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CommonGround Whitepaper | Technical Protocols for Adaptive Readers</title>
+    <meta
+      name="description"
+      content="Read the CommonGround whitepaper on Higher Ground protocols: portable memory, adaptive reader profiles, AI parsing, consent boundaries, and ZKP."
+    >
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="CommonGround whitepaper, Higher Ground technical protocols, adaptive reader protocol, responsive reader, portable memory, AI parsing, consent boundaries, Zero Knowledge Proof, ZKP, privacy-preserving personalization">
+    <meta property="og:title" content="CommonGround Whitepaper | Technical Protocols for Adaptive Readers">
+    <meta property="og:description" content="Technical protocols for portable memory, adaptive parsing, consent boundaries, responsive content, and Zero Knowledge Proof (ZKP)-supported context.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="assets/commonground-logo-current.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CommonGround Whitepaper | Technical Protocols">
+    <meta name="twitter:description" content="A technical overview of CommonGround, Higher Ground overlays, adaptive readers, portable memory, AI parsing, and ZKP-supported context.">
+    <link rel="stylesheet" href="styles.css?v=font-split">
+  </head>
+  <body>
+    <canvas class="signal-field" id="signalField" aria-hidden="true"></canvas>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="CommonGround home">
+        <span class="brand-paper">
+          <img src="assets/commonground-logo-current.png" alt="CommonGround">
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">This is how Higher Ground Works</a>
+        <a class="active" href="whitepaper.html">Whitepaper</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero section">
+        <p class="eyebrow">Whitepaper and technical aspects</p>
+        <h1>A consent-based memory layer for context-aware web parsing.</h1>
+        <p class="lede">
+          CommonGround separates useful personalization from invasive
+          surveillance by routing adaptation through purpose, protected context,
+          and explicit consent.
+        </p>
+      </section>
+
+      <section class="section split">
+        <div>
+          <p class="eyebrow">From personas to portable memory</p>
+          <h2>The next shift is reader-owned context.</h2>
+        </div>
+        <div>
+          <p>
+            Digital communication has moved through several stages. People once
+            wrote primarily from their own starting point. Over time, better
+            communicators learned to tailor messages to a reader, audience, or
+            use case. More recently, data has informed how material is adapted
+            to users, often through behavioral signals, analytics, segmentation,
+            and prediction.
+          </p>
+          <p>
+            That data-driven approach is evolving into persona-based
+            experiences: systems group readers into likely types and adapt
+            content around those inferred profiles. Personas are useful, but
+            they are still approximations. They describe a category of reader,
+            not the actual person sitting in front of the material.
+          </p>
+          <p>
+            Portable Memory changes the center of gravity. Instead of asking a
+            website to guess the reader's context, the reader brings a
+            persistent, permissioned memory that helps the material adapt to
+            them. HigherGround's work represents the first substantial steps
+            toward that model: a persistent portable memory that adapts material
+            for the reader while preserving purpose, consent, and authorial
+            intent.
+          </p>
+        </div>
+      </section>
+
+      <section class="section architecture">
+        <article>
+          <h2>Conceptual Architecture</h2>
+          <p>
+            The framework uses five cooperating elements: intake, memory,
+            proof, parsing, and presentation. A website requests contextual
+            guidance, not raw personal identity. The visitor controls what kind
+            of signal is used and when.
+          </p>
+        </article>
+        <div class="architecture-stack">
+          <div><span>01</span> Engagement and purpose intake</div>
+          <div><span>02</span> Persistent user-controlled memory</div>
+          <div><span>03</span> Zero Knowledge Proof (ZKP)-supported sensitive context</div>
+          <div><span>04</span> AI and parsing transformation layer</div>
+          <div><span>05</span> Adaptive website presentation</div>
+        </div>
+      </section>
+
+      <section class="section architecture-breakouts">
+        <article>
+          <span class="rail-number">01</span>
+          <h2>Engagement and Purpose Intake</h2>
+          <p>
+            Engagement and purpose intake is the starting point for
+            CommonGround. Instead of quietly watching a visitor and guessing
+            what they want, the system begins by asking why they are there. The
+            goal is to understand the visitor's intent before changing the
+            experience. Visitors arrive while exploring, comparing options,
+            completing a task, learning a topic for the first time, returning
+            with prior knowledge, or looking for specific guidance. Those are
+            very different situations, even when the visitor lands on the same
+            page.
+          </p>
+          <p>
+            This intake is short and respectful. It uses a focused set of
+            questions, a selected goal, a declared role, or a simple statement
+            of need. The point is to give the website a clear way to ask, "What
+            makes this useful to you?" That answer becomes the first signal for
+            adaptation. It influences the level of detail, the order of
+            information, the examples shown, the tone of guidance, and the next
+            action presented.
+          </p>
+          <p>
+            This element matters because it shifts personalization away from
+            extraction and toward consent. CommonGround does not begin with
+            purchase history or hidden behavioral scoring. It begins with
+            purpose. That makes the experience more legible to the visitor and
+            easier for the website to justify. The visitor knows why the site is
+            adapting, because the adaptation follows from what they asked the
+            experience to help them accomplish.
+          </p>
+        </article>
+
+        <article>
+          <span class="rail-number">02</span>
+          <h2>Persistent User-Controlled Memory</h2>
+          <p>
+            Persistent user-controlled memory is the part of CommonGround that
+            lets context travel with the person over time. It is not a memory of
+            a single conversation. It is a durable profile of useful context
+            that the person has chosen to preserve: their work, experience,
+            location, goals, constraints, learning preferences, accessibility
+            needs, language comfort, and other factors that affect how
+            information is explained. The important point is control. The
+            memory belongs to the visitor, not to the website.
+          </p>
+          <p>
+            When a person visits a participating experience, CommonGround uses
+            approved parts of that memory to help the page meet them where they
+            are. A healthcare worker, a job seeker, a parent, a veteran, a
+            student, and a small business owner need different explanations
+            from the same material. Persistent memory recognizes those
+            differences without forcing the visitor to rebuild their context
+            every time they arrive somewhere new.
+          </p>
+          <p>
+            This memory is structured, portable, and permissioned. Some fields
+            are broad and low-risk, such as preferred reading depth or current
+            task. Other fields are sensitive and stay protected from direct
+            exposure to a website. The memory layer therefore acts less
+            like a marketing profile and more like a private context vault. Its
+            purpose is to improve comprehension, application, and relevance
+            while keeping the visitor in charge of what context is active in
+            each experience.
+          </p>
+        </article>
+
+        <article>
+          <span class="rail-number">03</span>
+          <h2>ZKP-Supported Sensitive Context</h2>
+          <p>
+            ZKP-supported sensitive context is the privacy layer for information
+            that is useful but remains protected. ZKP makes it possible to prove
+            something about a visitor without exposing the underlying fact. In
+            CommonGround, a website receives a trusted signal that certain
+            adaptation is appropriate while never learning the sacred or
+            sensitive information behind that adaptation.
+          </p>
+          <p>
+            For example, a visitor has context such as a health condition, a
+            disability, a financial constraint, a legal status, a military
+            background, a trauma-related preference, or a geographic risk factor
+            that makes certain explanations more useful. A normal
+            personalization system often requires the visitor to disclose that
+            information directly. CommonGround avoids that pattern. The site
+            does not need to know the private fact. It only needs to know what
+            kind of adjustment is allowed: use plain-language instructions,
+            avoid a certain assumption, show a safer pathway, provide
+            eligibility-aware guidance, or change the examples.
+          </p>
+          <p>
+            In the current proof point, this begins with permissioned signals
+            that establish the privacy boundary and cryptographic direction.
+            Sensitive facts remain protected while still being useful. That is
+            the ethical center of the ZKP layer. It gives
+            adaptive systems a way to serve people better without asking them to
+            surrender private information as the price of being understood.
+          </p>
+        </article>
+
+        <article>
+          <span class="rail-number">04</span>
+          <h2>AI and Parsing Transformation Layer</h2>
+          <p>
+            The AI and parsing transformation layer is where CommonGround turns
+            context into a better experience. This layer reads the structure of
+            the webpage, the visitor's stated purpose, and the approved memory
+            signals. It then decides how the content is adapted. The page
+            receives a shorter explanation, a deeper technical path, a
+            step-by-step version, an example from the visitor's field, a
+            different order of sections, or a prompt that moves the visitor
+            toward the next useful action.
+          </p>
+          <p>
+            This is also where uploaded material becomes part of the experience.
+            This technology powers the
+            <a class="inline-link" href="https://www.gohireme.org">GoHireMe webpage</a>:
+            a visitor uploads a resume, receives adaptive responses within the
+            page, and is directed by AI parsing toward what helps next. AI
+            parsing extracts relevant career signals, identifies gaps, and
+            connects the resume to the visitor's goal. The result is not a
+            generic chatbot sitting beside the website. It is the website
+            becoming more responsive to the person's actual situation.
+          </p>
+          <p>
+            This layer is bounded and transparent. It identifies what parts of
+            the page are safe to adapt, what information is used, and what
+            remains unchanged. It avoids inventing facts or over-personalizing
+            beyond the visitor's consent. Its job is not to
+            manipulate the visitor. Its job is to parse, translate, simplify,
+            deepen, sequence, or direct material so the visitor understands and
+            applies it more effectively.
+          </p>
+        </article>
+
+        <article>
+          <span class="rail-number">05</span>
+          <h2>Adaptive Website Presentation</h2>
+          <p>
+            Adaptive website presentation is the visible result of the
+            CommonGround system. This is what the visitor actually experiences:
+            the page adjusts in a way that feels clearer, more relevant, and
+            easier to use. The adaptation is often subtle. A paragraph is
+            rewritten in plainer language. A technical term is expanded. A
+            section moves higher on the page because it matches the visitor's
+            goal. A resume upload triggers directed guidance. A complex topic is
+            broken into a practical sequence.
+          </p>
+          <p>
+            The presentation layer matters because good context is only useful
+            because it changes the experience at the right moment. A visitor
+            does not have to dig through a full site to find the version that
+            fits them. CommonGround makes the website feel like it understands
+            the purpose of the visit, while still preserving the integrity of
+            the original material. The site remains recognizable. The content
+            remains accountable. The path through it becomes more personal and
+            more useful.
+          </p>
+          <p>
+            This layer also makes adaptation visible enough to be trusted.
+            Visitors see when content has been tailored and why. They change
+            their goal, reduce adaptation, or turn it off. CommonGround does not
+            hide the fact that the page is adapting. It presents
+            adaptation as a consent-based
+            feature: a way to create clarity through connection without turning
+            the visitor into a data product.
+          </p>
+        </article>
+      </section>
+
+      <section class="section spec-list">
+        <article>
+          <h3>Persistent Memory</h3>
+          <p>
+            Stores durable user context such as work domain, lived experience,
+            location relevance, learning needs, accessibility preferences,
+            language comfort, and current goals.
+          </p>
+        </article>
+        <article>
+          <h3>Engagement Model</h3>
+          <p>
+            Begins with explicit questions about why the visitor is present and
+            what outcome would make the experience worthwhile.
+          </p>
+        </article>
+        <article>
+          <h3>Adaptive Parser</h3>
+          <p>
+            Reads page structure and produces alternate paths, summaries,
+            examples, warnings, or application-focused explanations.
+          </p>
+        </article>
+        <article>
+          <h3>Zero-Knowledge Support</h3>
+          <p>
+            Allows sensitive attributes to influence adaptation through proof or
+            eligibility signals without disclosing the underlying information.
+          </p>
+        </article>
+        <article>
+          <h3>Consent Boundary</h3>
+          <p>
+            Keeps the visitor in control of which memory classes are active for
+            a site, a session, or a specific content request.
+          </p>
+        </article>
+        <article>
+          <h3>Website Integration</h3>
+          <p>
+            Current proof point: this technology powers the
+            <a class="inline-link" href="https://www.gohireme.org">GoHireMe webpage</a>,
+            where adaptive responses happen within the page and uploaded
+            resumes are AI parsed and directed.
+            Active beta paths include a client-side layer <span class="status-label">(beta)</span>,
+            server-side adaptation service <span class="status-label">(beta)</span>,
+            CMS plugin <span class="status-label">(beta)</span>, and
+            standards-oriented context exchange <span class="status-label">(beta)</span>.
+          </p>
+        </article>
+      </section>
+
+      <section class="section statement">
+        <p>
+          The technical goal is simple: adapt the message without exposing the
+          person.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="footer-logo" href="index.html" aria-label="CommonGround home">
+        <img src="assets/commonground-logo-current.png" alt="CommonGround">
+      </a>
+      <span>
+        HigherGround is a subsidiary of At The Purple House, LLC
+        <a href="https://www.atthepurple.house">www.atthepurple.house</a>
+      </span>
+      <span>Clarity through connection.</span>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
